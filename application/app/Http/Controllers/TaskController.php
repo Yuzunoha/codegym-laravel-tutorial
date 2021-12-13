@@ -113,6 +113,7 @@ class TaskController extends Controller
         if (Task::create([
             'project_id' => $project->id,
             'task_kind_id' => $request->task_kind_id,
+            'detail' => $request->detail,
             'name' => $request->name,
             'task_status_id' => $request->task_status_id,
             'assigner_id' => $request->assigner_id,
