@@ -14,7 +14,7 @@ class AddDetailToTasksTable extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->string('detail');
+            $table->string('detail')->after('task_kind_id');
         });
     }
 
