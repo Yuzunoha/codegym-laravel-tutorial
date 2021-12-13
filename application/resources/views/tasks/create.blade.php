@@ -55,7 +55,7 @@
                 <div class="-mx-3 md:flex mb-6">
                     <div class="md:w-full px-3 mb-6">
                         <x-label for="detail" :value="__('Task Detail')" class="{{ $errors->has('detail') ? 'text-red-600' :'' }}" />
-                        <x-textarea id="detail" class="block mt-1 w-full {{ $errors->has('detail') ? 'border-red-600' :'' }}" name="detail" :value="old('detail')" placeholder="課題の詳細" rows="8" required autofocus />
+                        <x-textarea id="detail" class="block mt-1 w-full {{ $errors->has('detail') ? 'border-red-600' :'' }}" name="detail" :value="old('detail')" placeholder="課題の詳細" rows="8" />
                     </div>
                 </div>
                 <div class="-mx-3 md:flex mb-6">
