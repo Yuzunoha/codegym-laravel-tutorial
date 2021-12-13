@@ -47,11 +47,11 @@ class TaskController extends Controller
             $tasks
                 ->where(function ($tasks) use ($keyword) {
                     $tasks
-                        ->where('search_task_kinds.name', 'like', '%'.$keyword.'%')
-                        ->orWhere('projects.key', 'like', '%'.$keyword.'%')
-                        ->orWhere('tasks.name', 'like', '%'.$keyword.'%')
-                        ->orWhere('search_assigner.name', 'like', '%'.$keyword.'%')
-                        ->orWhere('search_users.name', 'like', '%'.$keyword.'%');
+                        ->where('search_task_kinds.name', 'like', '%' . $keyword . '%')
+                        ->orWhere('projects.key', 'like', '%' . $keyword . '%')
+                        ->orWhere('tasks.name', 'like', '%' . $keyword . '%')
+                        ->orWhere('search_assigner.name', 'like', '%' . $keyword . '%')
+                        ->orWhere('search_users.name', 'like', '%' . $keyword . '%');
                 });
         }
         if ($request->has('assigner_id') && isset($assigner_id)) {
