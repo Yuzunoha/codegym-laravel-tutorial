@@ -124,6 +124,10 @@
             </div>
         </form>
 
+        コメント1
+        コメント2
+        コメント3
+
         <form name="deleteform" method="POST" action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task]) }}">
             @csrf
             @method('DELETE')
