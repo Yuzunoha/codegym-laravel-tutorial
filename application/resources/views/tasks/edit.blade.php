@@ -133,8 +133,8 @@
             <x-validation-errors :errors="$errors" />
 
             <div class="flex flex-col px-8 pt-6 mx-6 rounded-md bg-white">
-                <div class="-mx-3 md:flex mb-6">
-                    <div class="md:w-full px-3 mb-6">
+                <div class="-mx-3 md:flex">
+                    <div class="md:w-full px-3">
                         <x-label for="text" :value="__('Comment Text')" class="{{ $errors->has('text') ? 'text-red-600' :'' }}" />
                         <x-textarea id="text" class="block mt-1 w-full {{ $errors->has('text') ? 'border-red-600' :'' }}" name="text" :value="old('text')" placeholder="コメント" rows="4" />
                     </div>
