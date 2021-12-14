@@ -130,13 +130,15 @@
             @foreach($comments as $comment)
             <div class="border mb-8">
                 <div class="border sm:px-6 lg:px-8">
-                    <div class="titlebar">
-                        <p class="subject" style="text-align: left; float: left;">◆HTML＆CSS入門</p>
-                        <p class="date" style="text-align: right;">11月27日(月)</p>
-                    </div>
-                    <span><b>{{ $comment->user->name }}</b></span>
-                    <span><small>{{ $comment->updated_at }}</small></span>
-                    <span style="display: block; text-align: right;">bbb</span>
+                    <p style="text-align: left; float: left;">
+                        <b>{{ $comment->user->name }}</b>
+                        <small>{{ $comment->updated_at }}</small>
+                    </p>
+                    <p style="text-align: right;">
+                        <x-button>
+                            {{ __('Send') }}
+                        </x-button>
+                    </p>
                 </div>
                 <div class="border py-3 px-2 sm:px-6 lg:px-8">
                     <p style="word-break: break-all;">{!! nl2br(e($comment->text)) !!}</p>
