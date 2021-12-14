@@ -130,7 +130,7 @@
             @foreach($comments as $comment)
             <div class="border mb-8">
                 <div class="border sm:px-6 lg:px-8">
-                    <b>{{ $comment->user->name }}</b> <small>{{ $comment->user->updated_at }}</small>
+                    <b>{{ $comment->user->name }}</b> <small>{{ $comment->updated_at }}</small>
                 </div>
                 <div class="border py-3 px-2 sm:px-6 lg:px-8">
                     <p style="word-break: break-all;">{!! nl2br(e($comment->text)) !!}</p>
