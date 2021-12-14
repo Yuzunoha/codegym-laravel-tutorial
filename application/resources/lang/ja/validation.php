@@ -161,6 +161,6 @@ return [
         'task_category_id' => 'カテゴリーID',
         'task_resolution_id' => '完了理由ID',
         'detail' => '課題の詳細',
-        'text' => '本文',
+        'text' => 'コメント',
     ],
 ];
