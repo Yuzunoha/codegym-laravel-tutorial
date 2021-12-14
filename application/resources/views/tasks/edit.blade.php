@@ -135,8 +135,8 @@
                         <small>{{ $comment->updated_at }}</small>
                     </p>
                     <p style="text-align: right;">
-                        <x-button>
-                            {{ __('Send') }}
+                        <x-button class="bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300">
+                            {{ __('Delete') }}
                         </x-button>
                     </p>
                 </div>
