@@ -126,13 +126,44 @@
 
         <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-end"></div>
 
-        <form method="POST" action="{{ route('comments.store', ['project' => $project, 'task' => $task]) }}">
-            @csrf
+        <div class="flex flex-col px-8 pt-6 mx-6 rounded-md bg-white">
+            <div class="border lg:px-8 mb-8">
+                <div class="border sm:px-6 lg:px-8">
+                    aaa
+                </div>
+                <div class="border py-3 px-2 sm:px-6 lg:px-8">
+                    テキストテキストテキスト<br>
+                    テキストテキストテキスト<br>
+                    テキストテキストテキスト
+                </div>
+            </div>
+            <div class="border lg:px-8 mb-8">
+                <div class="border sm:px-6 lg:px-8">
+                    aaa
+                </div>
+                <div class="border py-3 px-2 sm:px-6 lg:px-8">
+                    テキストテキストテキスト<br>
+                    テキストテキストテキスト<br>
+                    テキストテキストテキスト
+                </div>
+            </div>
+            <div class="border lg:px-8 mb-8">
+                <div class="border sm:px-6 lg:px-8">
+                    aaa
+                </div>
+                <div class="border py-3 px-2 sm:px-6 lg:px-8">
+                    テキストテキストテキスト<br>
+                    テキストテキストテキスト<br>
+                    テキストテキストテキスト
+                </div>
+            </div>
 
-            <!-- Validation Errors -->
-            <x-validation-errors :errors="$errors" />
+            <form method="POST" action="{{ route('comments.store', ['project' => $project, 'task' => $task]) }}">
+                @csrf
 
-            <div class="flex flex-col px-8 pt-6 mx-6 rounded-md bg-white">
+                <!-- Validation Errors -->
+                <x-validation-errors :errors="$errors" />
+
                 <div class="-mx-3 md:flex">
                     <div class="md:w-full px-3">
                         <x-label for="text" :value="__('Comment Text')" class="{{ $errors->has('text') ? 'text-red-600' :'' }}" />
@@ -144,8 +175,8 @@
                         {{ __('Send') }}
                     </x-button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
 
         <form name="deleteform" method="POST" action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task]) }}">
             @csrf
