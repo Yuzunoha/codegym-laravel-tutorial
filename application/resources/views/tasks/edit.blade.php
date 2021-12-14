@@ -127,39 +127,15 @@
         <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-end"></div>
 
         <div class="flex flex-col px-8 pt-6 mx-6 rounded-md bg-white">
-            <div class="border mb-8">
-                <div class="border sm:px-6 lg:px-8">
-                    aaa
-                </div>
-                <div class="border py-3 px-2 sm:px-6 lg:px-8">
-                    テキストテキストテキスト<br>
-                    テキストテキストテキスト<br>
-                    テキストテキストテキスト
-                </div>
-            </div>
-            <div class="border mb-8">
-                <div class="border sm:px-6 lg:px-8">
-                    aaa
-                </div>
-                <div class="border py-3 px-2 sm:px-6 lg:px-8">
-                    テキストテキストテキスト<br>
-                    テキストテキストテキスト<br>
-                    テキストテキストテキスト
-                </div>
-            </div>
-            <div class="border mb-8">
-                <div class="border sm:px-6 lg:px-8">
-                    aaa
-                </div>
-                <div class="border py-3 px-2 sm:px-6 lg:px-8">
-                    テキストテキストテキスト<br>
-                    テキストテキストテキスト<br>
-                    テキストテキストテキスト
-                </div>
-            </div>
-
             @foreach($comments as $comment)
-            {{ $comment }}
+            <div class="border mb-8">
+                <div class="border sm:px-6 lg:px-8">
+                    <b>{{ $comment->user->name }}</b> <small>{{ $comment->user->updated_at }}</small>
+                </div>
+                <div class="border py-3 px-2 sm:px-6 lg:px-8">
+                    {!! nl2br(e($comment->text)) !!}
+                </div>
+            </div>
             @endforeach
 
             <form method="POST" action="{{ route('comments.store', ['project' => $project, 'task' => $task]) }}">
