@@ -128,4 +128,12 @@ class Task extends Model
     {
         return $this->belongsTo(TaskResolution::class, 'task_resolution_id');
     }
+
+    /**
+     * タスクにぶら下がっているコメントを取得.
+     */
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

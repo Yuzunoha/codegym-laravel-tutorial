@@ -158,6 +158,10 @@
                 </div>
             </div>
 
+            @foreach($comments as $comment)
+            {{ $comment }}
+            @endforeach
+
             <form method="POST" action="{{ route('comments.store', ['project' => $project, 'task' => $task]) }}">
                 @csrf
 
