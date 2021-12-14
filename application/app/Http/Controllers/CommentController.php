@@ -18,7 +18,7 @@ class CommentController extends Controller
     public function store(Request $request, Project $project, Task $task)
     {
         //
-        dd($request);
+        dd($request, $project, $task);
     }
 
     /**
