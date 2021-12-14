@@ -161,9 +161,6 @@
             <form method="POST" action="{{ route('comments.store', ['project' => $project, 'task' => $task]) }}">
                 @csrf
 
-                <!-- Validation Errors -->
-                <x-validation-errors :errors="$errors" />
-
                 <div class="-mx-3 md:flex">
                     <div class="md:w-full px-3">
                         <x-label for="text" :value="__('Comment Text')" class="{{ $errors->has('text') ? 'text-red-600' :'' }}" />
