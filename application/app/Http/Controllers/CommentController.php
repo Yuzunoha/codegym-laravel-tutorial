@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -13,9 +15,10 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Project $project, Task $task)
     {
         //
+        dd($request);
     }
 
     /**

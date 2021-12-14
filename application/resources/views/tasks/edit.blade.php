@@ -127,7 +127,7 @@
         <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-end"></div>
 
         <div class="flex flex-col px-8 pt-6 mx-6 rounded-md bg-white">
-            <div class="border lg:px-8 mb-8">
+            <div class="border mb-8">
                 <div class="border sm:px-6 lg:px-8">
                     aaa
                 </div>
@@ -137,7 +137,7 @@
                     テキストテキストテキスト
                 </div>
             </div>
-            <div class="border lg:px-8 mb-8">
+            <div class="border mb-8">
                 <div class="border sm:px-6 lg:px-8">
                     aaa
                 </div>
@@ -147,7 +147,7 @@
                     テキストテキストテキスト
                 </div>
             </div>
-            <div class="border lg:px-8 mb-8">
+            <div class="border mb-8">
                 <div class="border sm:px-6 lg:px-8">
                     aaa
                 </div>
