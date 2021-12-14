@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -17,8 +18,26 @@ class CommentController extends Controller
      */
     public function store(Request $request, Project $project, Task $task)
     {
-        //
-        dd($request, $project, $task);
+        // dd($request->all(), $project, $task);
+        // id	task_id	user_id	text	created_at	updated_at	deleted_at	
+        $request->validate([
+            'text' => 'string|max:1000',
+        ]);
+
+        if (Comment::create([
+            'task_id' => $task->id,
+            'user_id' => Auth::id(),
+            'text' => $request->text,
+        ])) {
+            $flash = ['success' => __('Comment created successfully.')];
+        } else {
+            $flash = ['error' => __('Failed to create the comment.')];
+        }
+
+        return redirect()->route(
+            'tasks.edit',
+            ['project' => $project, 'task' => $task,]
+        )->with($flash);
     }
 
     /**
