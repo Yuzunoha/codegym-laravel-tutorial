@@ -124,9 +124,28 @@
             </div>
         </form>
 
-        コメント1
-        コメント2
-        コメント3
+        <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-end"></div>
+
+        <form method="POST" action="{{ route('comments.store', ['project' => $project, 'task' => $task]) }}">
+            @csrf
+
+            <!-- Validation Errors -->
+            <x-validation-errors :errors="$errors" />
+
+            <div class="flex flex-col px-8 pt-6 mx-6 rounded-md bg-white">
+                <div class="-mx-3 md:flex mb-6">
+                    <div class="md:w-full px-3 mb-6">
+                        <x-label for="text" :value="__('Comment Text')" class="{{ $errors->has('text') ? 'text-red-600' :'' }}" />
+                        <x-textarea id="text" class="block mt-1 w-full {{ $errors->has('text') ? 'border-red-600' :'' }}" name="text" :value="old('text')" placeholder="コメント" rows="4" />
+                    </div>
+                </div>
+                <div class="py-6 flex justify-end text-right">
+                    <x-button class="m-2 px-10">
+                        {{ __('Send') }}
+                    </x-button>
+                </div>
+            </div>
+        </form>
 
         <form name="deleteform" method="POST" action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task]) }}">
             @csrf
