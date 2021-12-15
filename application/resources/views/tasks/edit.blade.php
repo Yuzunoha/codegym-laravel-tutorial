@@ -1,11 +1,12 @@
 @section('script')
 <script>
+    const deleteform = document.getElementById('id_deleteform');
+    const modal_message = document.getElementById('id_modal_message');
+
     function toggleModal() {
         // TODO
         // action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task]) }}"
         // debug start
-        const deleteform = document.getElementById('id_deleteform');
-        const modal_message = document.getElementById('id_modal_message');
 
         console.log(deleteform.action);
         console.log(modal_message.innerText);
@@ -27,6 +28,10 @@
         closeModal[i].addEventListener('click', toggleModal);
     }
 
+    const onclickModalOpen = (comment_id) => {
+        console.log('comment_id: ', comment_id)
+    }
+    /*
     var openModal = document.querySelectorAll('.modal-open');
     for (var i = 0; i < openModal.length; i++) {
         openModal[i].addEventListener('click', function(event) {
@@ -34,6 +39,8 @@
             toggleModal();
         })
     }
+    */
+
 
     document.onkeydown = function(evt) {
         evt = evt || window.event;
@@ -146,7 +153,7 @@
                         <small>{{ $comment->updated_at }}</small>
                     </p>
                     <p style="text-align: right;">
-                        <x-button class="modal-open bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300">
+                        <x-button class="modal-open bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300" onclick="onclickModalOpen('{{ $comment->id }}'); return false;">
                             {{ __('Delete') }}
                         </x-button>
                     </p>
@@ -179,7 +186,7 @@
             @method('DELETE')
             <!-- Navigation -->
             <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-start">
-                <x-button class="modal-open m-2 px-10 bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300">
+                <x-button class="modal-open m-2 px-10 bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300" onclick='onclickModalOpen(); return false;'>
                     {{ __('Delete') }}
                 </x-button>
             </div>
