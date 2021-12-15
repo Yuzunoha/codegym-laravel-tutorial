@@ -150,7 +150,7 @@
                     </p>
                     <p style="text-align: right;">
                         <?php $urlDeleteComment = route('comments.destroy', ['project' => $project->id, 'task' => $task, 'comment' => $comment]); ?>
-                        @if (false)
+                        @if (Auth::id() === $comment->user_id)
                         <x-button class="modal-open bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300" onclick="onclickModalOpenDeleteComment('{{ $urlDeleteComment }}'); return false;">
                             {{ __('Delete') }}
                         </x-button>
