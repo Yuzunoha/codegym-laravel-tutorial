@@ -1,6 +1,17 @@
 @section('script')
 <script>
     function toggleModal() {
+        // TODO
+        // action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task]) }}"
+        // debug start
+        const deleteform = document.getElementById('id_deleteform');
+        const modal_message = document.getElementById('id_modal_message');
+
+        console.log(deleteform.action);
+        console.log(modal_message.innerText);
+        // document.id_deleteform.action = 'action!!!';
+        // debug end
+
         const body = document.querySelector('body');
         const modal = document.querySelector('.modal');
         modal.classList.toggle('opacity-0');
@@ -163,7 +174,7 @@
             </form>
         </div>
 
-        <form name="deleteform" method="POST" action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task]) }}">
+        <form id="id_deleteform" name="deleteform" method="POST" action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task]) }}">
             @csrf
             @method('DELETE')
             <!-- Navigation -->
@@ -196,7 +207,7 @@
                             </div>
                         </div>
 
-                        <p>{{ __('Are you sure you want to delete this task? Once a task is deleted, all of its resources and data will be permanently deleted.') }}</p>
+                        <p id="id_modal_message">{{ __('Are you sure you want to delete this task? Once a task is deleted, all of its resources and data will be permanently deleted.') }}</p>
 
                         <div class="flex justify-end pt-2">
                             <x-link-button class="modal-close m-2" href="#">
