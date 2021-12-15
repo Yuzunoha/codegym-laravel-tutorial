@@ -150,9 +150,15 @@
                     </p>
                     <p style="text-align: right;">
                         <?php $urlDeleteComment = route('comments.destroy', ['project' => $project->id, 'task' => $task, 'comment' => $comment]); ?>
+                        @if (false)
                         <x-button class="modal-open bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300" onclick="onclickModalOpenDeleteComment('{{ $urlDeleteComment }}'); return false;">
                             {{ __('Delete') }}
                         </x-button>
+                        @else
+                        <x-button disabled>
+                            {{ __('Delete') }}
+                        </x-button>
+                        @endif
                     </p>
                 </div>
                 <div class="border py-3 px-2 sm:px-6 lg:px-8">
