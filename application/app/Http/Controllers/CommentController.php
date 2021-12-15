@@ -48,6 +48,17 @@ class CommentController extends Controller
      */
     public function destroy(Project $project, Task $task, Comment $comment)
     {
-        //
+        if (false) {
+            /* 自分のコメントではない */
+            $flash = ['error' => __("You cannot delete the other user's comment.")];
+        } else if ($comment->delete()) {
+            $flash = ['success' => __('Comment deleted successfully.')];
+        } else {
+            $flash = ['error' => __('Failed to delete the comment.')];
+        }
+
+        return redirect()
+            ->route('tasks.edit', ['project' => $project, 'task' => $task])
+            ->with($flash);
     }
 }
