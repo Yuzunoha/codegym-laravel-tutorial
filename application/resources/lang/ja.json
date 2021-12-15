@@ -183,7 +183,6 @@
     "Task Kind": "種別",
     "Task Status": "状態",
     "Task Detail": "課題の詳細",
-    "Comment Text": "コメント",
     "Assigner": "担当者",
     "Task Category": "カテゴリー",
     "Due Date": "期限日",
@@ -200,5 +199,6 @@
     "Comment created successfully.": "コメントを作成しました。",
     "Failed to create the comment.": "コメントの作成に失敗しました。",
     "Are you sure you want to delete this task?": "課題を削除しますか？",
-    "Are you sure you want to delete this task? Once a task is deleted, all of its resources and data will be permanently deleted.": "本当に課題を削除してよろしいでしょうか？一度課題を削除すると、すべてのリソースとデータは永久に削除されます。"
+    "Are you sure you want to delete this task? Once a task is deleted, all of its resources and data will be permanently deleted.": "本当に課題を削除してよろしいでしょうか？一度課題を削除すると、すべてのリソースとデータは永久に削除されます。",
+    "Comment Text": "コメント"
 }
