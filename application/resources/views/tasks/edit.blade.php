@@ -23,6 +23,7 @@
 
     const onclickModalOpen = (url, title, message) => {
         deleteform.action = url;
+        modal_title.innerHTML = title;
         modal_message.innerHTML = message;
         toggleModal();
     }
