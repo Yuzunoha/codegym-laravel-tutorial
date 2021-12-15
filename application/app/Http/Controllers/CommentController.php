@@ -33,10 +33,9 @@ class CommentController extends Controller
             $flash = ['error' => __('Failed to create the comment.')];
         }
 
-        return redirect()->route(
-            'tasks.edit',
-            ['project' => $project, 'task' => $task,]
-        )->with($flash);
+        return redirect()
+            ->route('tasks.edit', ['project' => $project, 'task' => $task])
+            ->with($flash);
     }
 
     /**
