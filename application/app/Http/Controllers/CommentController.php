@@ -19,8 +19,6 @@ class CommentController extends Controller
      */
     public function store(Request $request, Project $project, Task $task)
     {
-        // dd($request->all(), $project, $task);
-        // id	task_id	user_id	text	created_at	updated_at	deleted_at	
         $request->validate([
             'text' => 'string|max:1000',
         ]);
