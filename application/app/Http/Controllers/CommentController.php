@@ -46,7 +46,7 @@ class CommentController extends Controller
      */
     public function destroy(Project $project, Task $task, Comment $comment)
     {
-        if (Auth::id() !== User::find($comment->user_id)->id) {
+        if (Auth::id() !== $comment->user_id) {
             /* 自分のコメントではない */
             $flash = ['error' => __("You cannot delete the other user's comment.")];
         } else if ($comment->delete()) {
