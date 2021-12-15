@@ -1,5 +1,10 @@
 @section('script')
 <script>
+    const p = console.log;
+    const deleteform = document.getElementById('id_deleteform');
+    const modal_message = document.getElementById('id_modal_message');
+    const modal_title = document.getElementById('id_modal_title');
+
     function toggleModal() {
         const body = document.querySelector('body');
         const modal = document.querySelector('.modal');
@@ -16,12 +21,21 @@
         closeModal[i].addEventListener('click', toggleModal);
     }
 
-    var openModal = document.querySelectorAll('.modal-open');
-    for (var i = 0; i < openModal.length; i++) {
-        openModal[i].addEventListener('click', function(event) {
-            event.preventDefault();
-            toggleModal();
-        })
+    const onclickModalOpen = (url, title, message) => {
+        deleteform.action = url;
+        modal_title.innerHTML = title;
+        modal_message.innerHTML = message;
+        toggleModal();
+    }
+    const onclickModalOpenDeleteTask = (url) => {
+        $title = "{{ __('Are you sure you want to delete this task?') }}";
+        $message = "{{ __('Are you sure you want to delete this task? Once a task is deleted, all of its resources and data will be permanently deleted.') }}";
+        onclickModalOpen(url, $title, $message);
+    }
+    const onclickModalOpenDeleteComment = (url) => {
+        $title = "{{ __('Are you sure you want to delete this comment?') }}";
+        $message = "{{ __('Are you sure you want to delete this comment? Once a comment is deleted, all of its resources and data will be permanently deleted.') }}";
+        onclickModalOpen(url, $title, $message);
     }
 
     document.onkeydown = function(evt) {
@@ -124,12 +138,59 @@
             </div>
         </form>
 
-        <form name="deleteform" method="POST" action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task]) }}">
+        <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-end"></div>
+
+        <div class="flex flex-col px-8 pt-6 mx-6 rounded-md bg-white">
+            @foreach($comments as $comment)
+            <div class="border mb-8">
+                <div class="border sm:px-6 lg:px-8">
+                    <p style="text-align: left; float: left;">
+                        <b>{{ $comment->user->name }}</b>
+                        <small>{{ $comment->updated_at }}</small>
+                    </p>
+                    <p style="text-align: right;">
+                        <?php $urlDeleteComment = route('comments.destroy', ['project' => $project->id, 'task' => $task, 'comment' => $comment]); ?>
+                        @if (Auth::id() === $comment->user_id)
+                        <x-button class="modal-open bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300" onclick="onclickModalOpenDeleteComment('{{ $urlDeleteComment }}'); return false;">
+                            {{ __('Delete') }}
+                        </x-button>
+                        @else
+                        <x-button disabled>
+                            {{ __('Delete') }}
+                        </x-button>
+                        @endif
+                    </p>
+                </div>
+                <div class="border py-3 px-2 sm:px-6 lg:px-8">
+                    <p style="word-break: break-all;">{!! nl2br(e($comment->text)) !!}</p>
+                </div>
+            </div>
+            @endforeach
+
+            <form method="POST" action="{{ route('comments.store', ['project' => $project, 'task' => $task]) }}">
+                @csrf
+
+                <div class="-mx-3 md:flex">
+                    <div class="md:w-full px-3">
+                        <x-label for="text" :value="__('Comment Text')" class="{{ $errors->has('text') ? 'text-red-600' :'' }}" />
+                        <x-textarea id="text" class="block mt-1 w-full {{ $errors->has('text') ? 'border-red-600' :'' }}" name="text" :value="old('text')" placeholder="コメント" rows="4" />
+                    </div>
+                </div>
+                <div class="py-6 flex justify-end text-right">
+                    <x-button class="m-2 px-10">
+                        {{ __('Send') }}
+                    </x-button>
+                </div>
+            </form>
+        </div>
+
+        <form id="id_deleteform" name="deleteform" method="POST">
             @csrf
             @method('DELETE')
             <!-- Navigation -->
             <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-start">
-                <x-button class="modal-open m-2 px-10 bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300">
+                <?php $urlDeleteTask = route('tasks.destroy', ['project' => $project->id, 'task' => $task]); ?>
+                <x-button class="modal-open m-2 px-10 bg-red-600 text-white hover:bg-red-700 active:bg-red-900 focus:border-red-900 ring-red-300" onclick="onclickModalOpenDeleteTask('{{ $urlDeleteTask }}'); return false;">
                     {{ __('Delete') }}
                 </x-button>
             </div>
@@ -149,7 +210,7 @@
 
                     <div class="modal-content py-4 text-left px-6">
                         <div class="flex justify-between items-center pb-3">
-                            <p class="text-2xl font-bold">{{ __('Are you sure you want to delete this task?') }}</p>
+                            <p id="id_modal_title" class="text-2xl font-bold"></p>
                             <div class="modal-close cursor-pointer z-50">
                                 <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                                     <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
@@ -157,7 +218,7 @@
                             </div>
                         </div>
 
-                        <p>{{ __('Are you sure you want to delete this task? Once a task is deleted, all of its resources and data will be permanently deleted.') }}</p>
+                        <p id="id_modal_message"></p>
 
                         <div class="flex justify-end pt-2">
                             <x-link-button class="modal-close m-2" href="#">
