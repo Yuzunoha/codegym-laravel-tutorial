@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,7 +49,7 @@ class CommentController extends Controller
      */
     public function destroy(Project $project, Task $task, Comment $comment)
     {
-        if (false) {
+        if (Auth::id() !== User::find($comment->user_id)->id) {
             /* 自分のコメントではない */
             $flash = ['error' => __("You cannot delete the other user's comment.")];
         } else if ($comment->delete()) {
