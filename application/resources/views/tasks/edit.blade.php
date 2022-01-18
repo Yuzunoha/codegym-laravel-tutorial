@@ -138,7 +138,17 @@
             </div>
         </form>
 
-        <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-end"></div>
+        <div class="max-w-full mx-auto py-6">
+            <form method="POST" action="{{ route('tasks.update', ['project' => $project->id, 'task' => $task]) }}">
+                @csrf
+                @method('PUT')
+                <div class="flex flex-col px-8 pt-6 mx-6 rounded-md bg-white">
+                    <div class="-mx-3 md:flex mb-6">
+                        <p>あああ</p>
+                    </div>
+                </div>
+            </form>
+        </div>
 
         <div class="flex flex-col px-8 pt-6 mx-6 rounded-md bg-white">
             @foreach($comments as $comment)
