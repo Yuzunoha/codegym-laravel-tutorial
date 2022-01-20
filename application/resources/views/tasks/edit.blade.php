@@ -139,6 +139,19 @@
         </form>
 
         <div class="max-w-full mx-auto py-6">
+            <form method="post" enctype="multipart/form-data">
+                <div id="dragDropArea">
+                    <div class="drag-drop-inside">
+                        <p class="drag-drop-info">ここにファイルをドロップ</p>
+                        <p>または</p>
+                        <p class="drag-drop-buttons">
+                            <input id="fileInput" type="file" accept="image/*" value="ファイルを選択" name="photo" onChange="photoPreview(event)">
+                        </p>
+                        <div id="previewArea"></div>
+                    </div>
+                </div>
+                <button type="submit" name="submit" value="登録">登録<button>
+            </form>
             <form method="POST" action="{{ route('tasks.update', ['project' => $project->id, 'task' => $task]) }}">
                 @csrf
                 @method('PUT')
